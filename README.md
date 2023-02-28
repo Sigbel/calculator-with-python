@@ -29,7 +29,7 @@
 
 ## Cuidados Iniciais
 
-Antes de prosseguir com a utilização do aplicativo, certifique-se de instalar todas as depêndencias presentes no arquivo **requirements.txt**.
+Antes de prosseguir com a utilização do aplicativo, certifique-se de instalar todas as dependências presentes no arquivo **requirements.txt**.
 
 ## Interfaces
 
