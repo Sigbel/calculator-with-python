@@ -1,81 +1,191 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QGridLayout, QPushButton, QLineEdit, QSizePolicy
 
-class Calculadora(QMainWindow):
+from math import sqrt
+
+from PyQt5.QtGui import QKeyEvent
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtCore import Qt
+
+from interface.main_window import *
+
+
+class Calculadora(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle('Calculadora')
-        self.setFixedSize(400,400)
-        self.cw = QWidget()
-        self.grid = QGridLayout(self.cw)
+        super().setupUi(self)
 
-        self.display = QLineEdit()
-        self.grid.addWidget(self.display, 0, 0, 1, 5)
-        self.display.setDisabled(True)
-        self.display.setStyleSheet(
-            '* {background: #FFF; color: #000; font-size: 30px}'
-        )
-        self.display.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
-        
-        self.add_btn(QPushButton('7'), 1, 0, 1, 1)
-        self.add_btn(QPushButton('8'), 1, 1, 1, 1)
-        self.add_btn(QPushButton('9'), 1, 2, 1, 1)
-        self.add_btn(QPushButton('+'), 1, 3, 1, 1)
-        self.add_btn(QPushButton('C'), 1, 4, 1, 1, 
-            lambda: self.display.setText(''), 
-            'background: #d5580d; color: #fff; font-weight: 700;')
+        self.atr_buttons()
 
-        self.add_btn(QPushButton('4'), 2, 0, 1, 1)
-        self.add_btn(QPushButton('5'), 2, 1, 1, 1)
-        self.add_btn(QPushButton('6'), 2, 2, 1, 1)
-        self.add_btn(QPushButton('-'), 2, 3, 1, 1)
-        self.add_btn(QPushButton('<-'), 2, 4, 1, 1, 
-            lambda: self.display.setText(self.display.text()[:-1]),
-            'background: #13823a; color: #fff; font-weight: 700;')
-        
-        self.add_btn(QPushButton('1'), 3, 0, 1, 1)
-        self.add_btn(QPushButton('2'), 3, 1, 1, 1)
-        self.add_btn(QPushButton('3'), 3, 2, 1, 1)
-        self.add_btn(QPushButton('/'), 3, 3, 1, 1)
-        self.add_btn(QPushButton(''), 3, 4, 1, 1)
-        
-        self.add_btn(QPushButton('.'), 4, 0, 1, 1)
-        self.add_btn(QPushButton('0'), 4, 1, 1, 1)
-        self.add_btn(QPushButton(''), 4, 2, 1, 1)
-        self.add_btn(QPushButton('*'), 4, 3, 1, 1)
-        self.add_btn(QPushButton('='), 4, 4, 1, 1, 
-            self.eval_igual,
-            'background: #095177; color: #fff; font-weight: 700;')
+    def keyPressEvent(self, a0: QKeyEvent) -> None:
+        key = a0.key()
 
-        self.setCentralWidget(self.cw)
+        if key == Qt.Key_0:
+            self.number_clicked("0")
+        elif key == Qt.Key_1:
+            self.number_clicked("1")
+        elif key == Qt.Key_2:
+            self.number_clicked("2")
+        elif key == Qt.Key_3:
+            self.number_clicked("3")
+        elif key == Qt.Key_4:
+            self.number_clicked("4")
+        elif key == Qt.Key_5:
+            self.number_clicked("5")
+        elif key == Qt.Key_6:
+            self.number_clicked("6")
+        elif key == Qt.Key_7:
+            self.number_clicked("7")
+        elif key == Qt.Key_8:
+            self.number_clicked("8")
+        elif key == Qt.Key_9:
+            self.number_clicked("9")
+        elif key == Qt.Key_Backspace:
+            self.back_clicked()
+        elif key == Qt.Key_Delete:
+            self.clear_clicked()
+        elif key == Qt.Key_Return:
+            self.equals_clicked()
+        elif key == Qt.Key_Plus:
+            self.plus_pressed()
+        elif key == Qt.Key_Minus:
+            self.minus_pressed()
+        elif key == Qt.Key_Asterisk:
+            self.mult_pressed()
+        elif key == Qt.Key_Slash:
+            self.division_pressed()
+        elif key == Qt.Key_Period:
+            self.comma_pressed()
 
-    def add_btn(self, btn, row, col, rowspan, colspan, funcao=None, style = None):
-        self.grid.addWidget(btn, row, col, rowspan, colspan)
-        
-        if not funcao:
-            btn.clicked.connect(
-                lambda: self.display.setText(
-                    self.display.text() + btn.text()
-                )
-            )
+    # Atribuição dos botões às respectivas funções
+    def atr_buttons(self):
+        buttons = [
+            (self.btn_0, self.number_clicked),
+            (self.btn_1, self.number_clicked),
+            (self.btn_2, self.number_clicked),
+            (self.btn_3, self.number_clicked),
+            (self.btn_4, self.number_clicked),
+            (self.btn_5, self.number_clicked),
+            (self.btn_6, self.number_clicked),
+            (self.btn_7, self.number_clicked),
+            (self.btn_8, self.number_clicked),
+            (self.btn_9, self.number_clicked),
+            (self.btn_back, self.back_clicked),
+            (self.btn_cancelEntry, self.cancelEntry_clicked),
+            (self.btn_clear, self.clear_clicked),
+            (self.btn_divByone, self.inverse_clicked),
+            (self.btn_equal, self.equals_clicked),
+            (self.btn_minus, self.operation_clicked),
+            (self.btn_plus, self.operation_clicked),
+            (self.btn_plus_minus, self.number_clicked),
+            (self.btn_percent, self.percentage_clicked),
+            (self.btn_raisedTotwo, self.square_clicked),
+            (self.btn_squareRoot, self.square_root_clicked),
+            (self.btn_mult, self.operation_clicked),
+            (self.btn_division, self.operation_clicked),
+            (self.btn_comma, self.number_clicked),
+        ]
+
+        for btn, method in buttons:
+            btn.clicked.connect(method)
+
+    def number_clicked(self, number=None):
+        if self.label_res.text() == "0" or self.label_res.text() == "Error":
+            self.label_res.clear()
+
+        if number:
+            self.label_res.setText(self.label_res.text() + number)
+
         else:
-            btn.clicked.connect(funcao)
+            button = self.sender()
+            self.label_res.setText(self.label_res.text() + button.text())
 
-        if style:
-            btn.setStyleSheet(style)
+    def clear_clicked(self):
+        self.label_res.setText("0")
+        self.label_visu.clear()
 
-        btn.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+    def cancelEntry_clicked(self):
+        self.label_res.setText("0")
 
-    def eval_igual(self):
+    def operation_clicked(self):
+        button_test = self.sender()
+
+        # if button_test.text() == "X":
+        #     button = "*"
+        # elif button_test.text() == "÷":
+        #     button = "/"
+        # else:
+        #     button = button_test.text()
+
+        # try:
+        #     if self.label_visu.text() == "":   
+        #         expression = self.label_res.text()
+
+        #         print(expression)
+        #         result = eval(expression)
+
+        #         print(result)
+        #         self.label_visu.setText(str(result) + button)
+        #     else:
+        #         expression = self.label_visu.text() + button + self.label_res.text()
+
+        #         print(expression)
+        #         result = eval(expression)
+
+        #         print(result)
+        #         self.label_visu.setText(str(result) + button)
+        # except Exception:
+        #     self.label_res.setText("Error")
+
+
+        self.label_res.clear()
+
+
+    def equals_clicked(self):
+        expression = self.label_res.text()
         try:
-            self.display.setText(
-                str(eval(self.display.text()))
-            )
-        except Exception as e:
-            self.display.setText('Conta Inválida.')
+            result = eval(expression)
+            self.label_res.setText(str(result))
+        except Exception:
+            self.label_res.setText("Error")
 
-if __name__ == '__main__':
-    qt = QApplication(sys.argv)
-    calc = Calculadora()
-    calc.show()
-    qt.exec_()
+    def back_clicked(self):
+        current_text = self.label_res.text()
+        self.label_res.setText(current_text[:-1])
+
+    def square_root_clicked(self):
+        current_value = float(self.label_res.text())
+        self.label_res.setText(str(sqrt(current_value)))
+
+    def square_clicked(self):
+        current_value = float(self.label_res.text())
+        self.label_res.setText(str(current_value**2))
+
+    def inverse_clicked(self):
+        current_value = float(self.label_res.text())
+        self.label_res.setText(str(1 / current_value))
+
+    def percentage_clicked(self):
+        current_value = float(self.label_res.text())
+        self.label_res.setText(str(current_value / 100))
+
+    def plus_pressed(self):
+        pass
+
+    def minus_pressed(self):
+        pass
+
+    def mult_pressed(self):
+        pass
+
+    def division_pressed(self):
+        pass
+
+    def comma_pressed(self):
+        pass
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    calculator = Calculadora()
+    calculator.show()
+    app.exec_()
