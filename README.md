@@ -1,15 +1,15 @@
 <p align="center">
- <img border="5px" width="300px" src="https://res.cloudinary.com/sigbel/image/upload/v1677599628/projects/Calculator_with_Python/calculator-figure_m22mzi.png" align="center" alt="Entrance" />
+ <img border="5px" src="https://res.cloudinary.com/dvqvv2bkq/image/upload/v1710903266/portfolio/%40Imagens/nenu6mi0et4klrzi4md6.png" align="center" alt="Entrance" />
  <h2 align="center">Calculator with Python</h2>
- <p align="center">Um simples modelo de calculadora gerado em python.</p>
+ <p align="center">Um simples modelo de calculadora gerado em Python e PyQt5.</p>
 </p>
 
 <p align="center">
 <a href="https://github.com/Sigbel/Calculator_with_Python/issues">
-    <img alt="Issues" src="https://img.shields.io/github/issues/sigbel/Calculator_with_Python?color=0088ff" />
+    <img alt="Issues" src="https://img.shields.io/github/issues/Sigbel/Calculator_with_Python?color=0088ff" />
 </a>
 <a href="https://github.com/Sigbel/Calculator_with_Python/pulls">
-    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/sigbel/Calculator_with_Python?color=0088ff" />
+    <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/Sigbel/Calculator_with_Python?color=0088ff" />
 </a>
 
 </p>
@@ -23,20 +23,41 @@
 
 # Tópicos
 
-- [Cuidados Iniciais](#cuidados-iniciais)
-- [Interfaces](#interfaces)
-- [Demonstrativo](#demonstrativo)
+- <a href="#tecnologias">Tecnologias</a>
+- <a href="#observacoes">Observações</a>
+- <a href="#demonstrativo">Demonstrativo</a>
+- <a href="#contribuicoes">Contribuições</a>
+- <a href="#status">Status do Projeto</a>
+- <a href="#contato">Contato</a>
 
-## Cuidados Iniciais
+<h2 id="observacoes" style="display: block; border-bottom: 1px solid gray">Tecnologias</h2>
 
-Antes de prosseguir com a utilização do aplicativo, certifique-se de instalar todas as dependências presentes no arquivo **requirements.txt**.
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
-## Interfaces
+Outras:
+- PyQt5
 
-- Interface desenvolvida para a realização de contas com as quatro operações básicas das matemática.
+<h2 id="observacoes" style="display: block; border-bottom: 1px solid gray">Observações</h2>
 
-## Demonstrativo
+- Este projeto foi desenvolvido com o intuito simular uma calculadora com todas as funcionalidades padrões. 
+    <br>
+- Antes de prosseguir com a utilização do aplicativo, certifique-se de instalar todas as dependências presentes no arquivo **requirements.txt**.
+
+
+<h2 id="demonstrativo" style="display: block; border-bottom: 1px solid gray;">Demonstrativo</h2>
 
 |<b>_Figura 1 - Interface da Calculadora_</b>|
 |:--:|
-|![img_1.png](https://res.cloudinary.com/sigbel/image/upload/v1677599627/projects/Calculator_with_Python/calculator_hiqqor.png)|
+|![img_1.png](https://res.cloudinary.com/dvqvv2bkq/image/upload/v1710897089/portfolio/%40Imagens/in85tfvt5ds3myqgfylr.png)|
+
+<h2 id="contribuicoes" style="display: block; border-bottom: 1px solid gray;">Contribuições</h2>
+
+Em caso de quaisquer sugestões. Sinta-se a vontade para contribuir.
+
+<h2 id="status" style="display: block; border-bottom: 1px solid gray;">Status do Projeto</h2>
+
+![Static Badge](https://img.shields.io/badge/Status-Ativo-yellow)
+
+<h2 id="contato" style="display: block; border-bottom: 1px solid gray;">Contato</h2>
+
+Para quaisquer contatos ou dúvidas, me envie um e-mail (hb.belgamo@gmail.com)
